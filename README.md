@@ -25,10 +25,10 @@ Part 4 : Optionally generate figures of the SNP filtering
 
 # Instructions
 
-Before running
+**Before running**
 The script will connect to the NIH website to extract linkage information. You will need to go to this link (https://ldlink.nci.nih.gov/?tab=apiaccess) and register for an API token. In the script options please enter you token before running, using -T, --API_token.
 
-Quick start
+**Quick start**
 When running the script ensure you have at least 40Gb of RAM as the script reads into memory both genome and reference SNP files. 
 To execute in its most simple form
 > Rscript /path_to_script/design_library_v0.2.R \
@@ -39,13 +39,13 @@ To execute in its most simple form
 -o /path_to/outdir \
 -T {API_token}
 
-Libraries
+**Libraries**
 The script has the following dependencies, they should install automatically on first run, if they don’t please install manually.
 From CRAN - stringr, optparse, LDlinkR, data.table, dplyr, remotes, BiocManager, taRifx, RColorBrewer.
 From BiocManager – rtracklayer, VariantAnnotation, Biostrings.
 From Github – sarlacc, SparseSummarizedExperiment.
 
-Run environment information
+**Run environment information**
 R version 4.0.3 (2020-10-10)
 Platform: x86_64-conda-linux-gnu (64-bit)
 Running under: CentOS Linux 8 (Core)
@@ -62,12 +62,12 @@ SparseSummarizedExperiment_0.0.0.9021, sarlacc_1.0.0, VariantAnnotation_1.36.0, 
 loaded via a namespace (and not attached):
 httr_1.4.2, bit64_4.0.5, assertthat_0.2.1, askpass_1.1, BiocFileCache_1.14.0, latticeExtra_0.6-29, blob_1.2.1, BSgenome_1.58.0, GenomeInfoDbData_1.2.4, progress_1.2.2, pillar_1.6.0, RSQLite_2.2.3, lattice_0.20-41, glue_1.4.2, Matrix_1.3-2, plyr_1.8.6, XML_3.99-0.6, pkgconfig_2.0.3, ShortRead_1.48.0, biomaRt_2.46.3, zlibbioc_1.36.0, purrr_0.3.4, jpeg_0.1-8.1, getopt_1.20.3, BiocParallel_1.24.1, tibble_3.1.1, openssl_1.4.3, generics_0.1.0, ellipsis_0.3.1, cachem_1.0.4, GenomicFeatures_1.42.3, magrittr_2.0.1, crayon_1.4.1, memoise_2.0.0, fansi_0.4.2, hwriter_1.3.2, xml2_1.3.2, tools_4.0.3, prettyunits_1.1.1, hms_0.5.3, lifecycle_1.0.0, DelayedArray_0.16.3, AnnotationDbi_1.52.0, compiler_4.0.3, rlang_0.4.10, grid_4.0.3, RCurl_1.98-1.3, rstudioapi_0.13, rappdirs_0.3.3, bitops_1.0-7, curl_4.3, DBI_1.1.0, reshape2_1.4.4, R6_2.5.0, GenomicAlignments_1.26.0 fastmap_1.0.1, bit_4.0.4, utf8_1.1.4, stringi_1.5.3, Rcpp_1.0.7, png_0.1-7, vctrs_0.3.6, dbplyr_2.0.0, tidyselect_1.1.0
 
-INPUT FILES
+**INPUT FILES**
 For both the summary_SNP_file and main_SNP_file;
 chr/CHR notation should be consistent in both files.
 P_value/P notation should be exponential format eg 2.3755e-64
 
-Required inputs 
+*Required inputs*
 1)	-i, --summary_SNP_file : "/path_to/summary_SNPs.txt"
 Text file with header containing a list of lead SNPs used to define loci to design oligos within. Tab delimited (can be gzipped) 
 
@@ -98,7 +98,7 @@ Fasta file of the relevant species and genome build, must be the same as the SNP
 Must be fasta file format.
 
 
-Optional inputs
+*Optional inputs*
 
 5)	-n, --negative_control_file : "/path_to /H3K27me3.broadPeak.gz" 
 A bed file use to design control probes. Enriched regions are refined by the ‘--ChIP_enrichment’ option. Regions with an enrichment score below this value are removed. Retained regions are mapped to known variants in the snp_db_file. Overlapping variants are randomly selected and used for probe design. 
@@ -118,7 +118,7 @@ Must be headerless file with the columns arranged as per;
 Other columns can after these can exist. Any consistent separator can be used. 
 Some SNPs in build hg37 are artefacts and have been removed in hg38 dbSNP builds they are listed here   # https://gatk.broadinstitute.org/hc/en-us/articles/360035890951-Human-genome-reference-builds-GRCh38-or-hg38-b37-hg19
 
-OPTIONS
+**OPTIONS**
 1)	-o, --outdir : ”/path_to/output_dir”
 Path to output dir where output files are saved.
 2)	-s, --suffix : string.
@@ -180,14 +180,19 @@ If --filter_phet = TRUE. This value defines the cut off.
 30)	-C, --cycle_limit : Positive integer, default=5.
 Risk loci are split into loci containing only linked variants, this value sets the upper limit on the number of cycles used to split loci. 
  
-OUTPUT FILES 
+**OUTPUT FILES**
 MPRA_library_sequences.txt  - contains the final probe set names and sequences that can be submitted directly to an oligo synthesis company for manufacture.
+
 MPRA_summary.txt - details the number of oligos, SNPs, and loci in the final probe set.
 MPRA_filtered_SNPs.txt - contains all the filtered SNPs and the filter which was applied to them.
 
 MPRA_summary_filtered.txt – contains summary information about the numbers of SNPs filtered due to various constraints.
+
 MPRA_summary_stats.txt – describes each loci after filtering, provides information on the number of SNPs pre and post filtering and the P-value threshold with was applied to each. 
+
 MPRA_library_all_variants.txt – contains additional information on all test SNPs in the final probe set. Including, lead SNP, original probe sequence and loci P-value cut-off.
+
 MPRA_library_included_variants_and_cotrols.txt – contains additional information on all, test and control SNPs, in the final probe set. Including, lead SNP, original probe sequence and loci P-value cut-off.
+
 MPRA_prefilter_sequences.txt – contains all variants extracted for probe design before filtering.
  in all output files unless otherwise specified RSID names are those updated based on the supplied SNP reference file.   
