@@ -182,6 +182,8 @@ Where lead SNPs has phet > value specified in --P_het_cuttoff option (ie not het
 If --filter_phet = TRUE. This value defines the cut off. 
 30)	**-C, --cycle_limit** : Positive integer, default=5.
 Risk loci are split into loci containing only linked variants, this value sets the upper limit on the number of cycles used to split loci. 
+31)	**--strict** : logical, default=FALSE, values TRUE|FALSE.
+If TRUE script will exit where it encounters issues that while may indicate some errors, but do not prevent execution.
  
 **OUTPUT FILES**
 
