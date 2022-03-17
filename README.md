@@ -40,12 +40,14 @@ To execute in its most simple form
 -T {API_token}
 
 **Libraries**
+
 The script has the following dependencies, they should install automatically on first run, if they don’t please install manually.
 From CRAN - stringr, optparse, LDlinkR, data.table, dplyr, remotes, BiocManager, taRifx, RColorBrewer.
 From BiocManager – rtracklayer, VariantAnnotation, Biostrings.
 From Github – sarlacc, SparseSummarizedExperiment.
 
 **Run environment information**
+
 R version 4.0.3 (2020-10-10)
 Platform: x86_64-conda-linux-gnu (64-bit)
 Running under: CentOS Linux 8 (Core)
