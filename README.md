@@ -1,4 +1,4 @@
-MPRA design tool
+# MPRA design tool
 An R script for designing probes for massively parallel reporter assays (MPRA), investigating the influence of SNP genotype on enhancer/promoter activity. 
 The scripts accepts lists of genetic variants, designs probes (REF / ALT alleles and  Fwd/ Rev orientations) and outputs a text file of sequences that can be sent directly for oligo synthesis. 
 MPRA simultaneously assess the enhancer / promoter activity of hundreds or thousands of DNA sequences. MPRA can be used to assess the influence small genetic polymorphisms (SNPs / indels) on enhancer activity for genetic variants linked to trait, for example from a GWAS study. This script accepts a list of SNP/Indels and designs probes to be used in an MRPA experiment such as (https://www.nature.com/articles/s41596-020-0333-5). Users can set their own probes length, adapter sequence and other features such as removing/including indels. 
