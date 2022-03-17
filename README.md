@@ -25,10 +25,10 @@ Part 4 : Optionally generate figures of the SNP filtering
 
 # Instructions
 
-**Before running**
+**Before running** 
 The script will connect to the NIH website to extract linkage information. You will need to go to this link (https://ldlink.nci.nih.gov/?tab=apiaccess) and register for an API token. In the script options please enter you token before running, using -T, --API_token.
 
-**Quick start**
+**Quick start** 
 When running the script ensure you have at least 40Gb of RAM as the script reads into memory both genome and reference SNP files. 
 To execute in its most simple form
 > Rscript /path_to_script/design_library_v0.2.R \
@@ -181,6 +181,7 @@ If --filter_phet = TRUE. This value defines the cut off.
 Risk loci are split into loci containing only linked variants, this value sets the upper limit on the number of cycles used to split loci. 
  
 **OUTPUT FILES**
+
 MPRA_library_sequences.txt  - contains the final probe set names and sequences that can be submitted directly to an oligo synthesis company for manufacture.
 
 MPRA_summary.txt - details the number of oligos, SNPs, and loci in the final probe set.
