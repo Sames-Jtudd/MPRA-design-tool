@@ -67,28 +67,29 @@ httr_1.4.2, bit64_4.0.5, assertthat_0.2.1, askpass_1.1, BiocFileCache_1.14.0, la
 **INPUT FILES** 
 
 For both the summary_SNP_file and main_SNP_file;
-chr/CHR notation should be consistent in both files.
-P_value/P notation should be exponential format eg 2.3755e-64
+chromosome notation eg (chr1 or 1) should be consistent in both files.
+P_value notation should be exponential format eg 2.3755e-64
 
 *Required inputs*
 1)	**-i, --summary_SNP_file** : "/path_to/summary_SNPs.txt"
-Text file with header containing a list of lead SNPs used to define loci to design oligos within. Tab delimited (can be gzipped) 
+A headered text file, containing a list of lead SNPs used to define loci for probe design. Tab delimited (can be gzipped). 
+
+Header must contain the columns “CHR”, “POS” and “RSID”, can contain others.
 
 eg
 CHR	POS	RSID	P
 1	22503282	rs2807367	3.27E-08
 
-Must contain the columns “CHR”, “POS” and “RSID”, can contain others.
 
 2)	**-a, --all_SNP_file** : "/path_to/meta_results_header.txt"
-Text file with header containing the full list of genetic variants. May be the output from META. Tab delimited (can be gzipped)
+Headered text file containing the full list of genetic variants. May be the output from META. Tab delimited (can be gzipped).
 
-Must contain the columns “chr”, “pos”, “rsid”, "P_value",”allele_A”,” allele_B”;
+Header must contain the columns “chr”, “pos”, “rsid”, "P_value",”allele_A”,” allele_B”;
 
 optional headers;
 
-“RAF” (relative allele freq) if present variants are filtered to remove those with a RAF below a value specified by the min_RAF option.
-“P_heterogeneity” if present and option filter_phet=T variants with significant heterogeneity in a region where the lead SNP doesn’t exhibit heterogeneity are filtered. (intended for studies from multiple populations) 
+“RAF” (relative allele freq) if present variants can be filtered to remove those with a RAF below a value specified by **--min_RAF**.
+“P_heterogeneity” if present and **--filter_phet**=T variants with significant heterogeneity in a region where the lead SNP doesn’t exhibit heterogeneity are filtered. (Intended for studies from multiple populations) 
 Can contain others columns.
 
 3)	**-d, --snp_db_file** : ”/path_to /00-common_all.vcf.gz" 
@@ -104,14 +105,15 @@ Must be fasta file format.
 *Optional inputs*
 
 5)	**-n, --negative_control_file** : "/path_to /H3K27me3.broadPeak.gz" 
-A bed file use to design control probes. Enriched regions are refined by the ‘--ChIP_enrichment’ option. Regions with an enrichment score below this value are removed. Retained regions are mapped to known variants in the snp_db_file. Overlapping variants are randomly selected and used for probe design. 
+A bed file use to design control probes. Enriched regions are defined by **--ChIP_enrichment**. Regions with an enrichment score below this value are discarded. Retained regions are overlapped with variants in **--snp_db_file** and randomly selected for probe design. 
 Must be headerless bed file with the columns arranged as per;
-"chr","start","stop","rank","score","strand","enrichment","p-val","q-val"
+"**chr**","**start**","**end**","rank","score","strand","**enrichment**","p-val","q-val"
+columns in bold are critical other can contain dummy/sham data. However the order of the columns and total number must be preserved.  
 Eg https://egg2.wustl.edu/roadmap/data/byFileType/peaks/consolidated/broadPeak/
 
 
 6)	**-u, --unfiltered_file_path** : "/path_to/unfiltered_rsid_{CHROM}.txt.gz"
-Directory containing the per chr output from meta, without any P value filtering. If the --add_proxies option is true, these files are used to prevent importing variants which were not in -- all_SNP_file due to P-value filtering but are linked to risk variants. Chromosome names are inferred from the SNPs in the --summary_SNP_file. These are then substituted for “CHROM” in the path to specify the relevant file path. Eg for variants on chromosome 1 the script will attempt to import unfiltered_rsid_1.txt.gz. The “CHROM” in the path must be present to allow substitution with chr names. The remainder of the path must match the relevant file name. File format same as --all_SNP_file.
+Directory containing the per chr output from meta, without any P value filtering. If **--add_proxies** is true, these files are used to prevent importing variants which were not in **--all_SNP_file** due to P-value filtering but are linked to risk variants. Chromosome names are inferred from the SNPs in the **--summary_SNP_file**. These are then substituted for “CHROM” in the path to specify the relevant file path. Eg for variants on chromosome 1 the script will attempt to import unfiltered_rsid_1.txt.gz. The “CHROM” in the path must be present to allow substitution with chr names. The remainder of the path must match the relevant file name. File format same as **--all_SNP_file**.
 
 7)	**-b, --black_list_snp_file** : "/path_to/b151_rs_without_GRCh38_mapping.bcp"
 Text file.
