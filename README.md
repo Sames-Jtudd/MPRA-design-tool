@@ -77,7 +77,7 @@ A headered text file, containing a list of lead SNPs used to define loci for pro
 Header must contain the columns “CHR”, “POS” and “RSID”, can contain others.
 
 eg
-CHR	POS	RSID	P
+CHR	POS	RSID	P \
 1	22503282	rs2807367	3.27E-08
 
 
