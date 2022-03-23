@@ -31,8 +31,8 @@ The script will connect to the NIH LDlink website to extract linkage information
 **Quick start** 
 When running the script ensure you have at least 40Gb of RAM as the script reads both genome and reference SNP files into memory. 
 To execute, in its simplest form
-> Rscript /path_to_script/design_library_v0.2.R \
--i / path_to/summary_SNPs.txt \
+> Rscript /path_to_script/design_library_v0.2.R "\"
+-i / path_to/summary_SNPs.txt "\"
 -a /path_to/all_SNPs.txt \
 -d /path_to/SNPdb.vcf.gz \
 -g /path_to/reference_genome.fa.gz \
