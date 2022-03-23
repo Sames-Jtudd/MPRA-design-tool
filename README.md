@@ -7,7 +7,7 @@ The script is designed to work with the output from META (https://mathgen.stats.
 
 Functions performed by the script ;
 
-Part 1 : extract variants within a defined genetic interval around sentinel/leads SNPs from which  probe sequences will be created.  Sentinel/leads SNPs are defined in --summary_SNP_file and full SNP list specified by the --all_SNP_file.
+Part 1 : extract variants within a defined genetic interval around sentinel/lead SNPs from which  probe sequences will be created. Sentinel/lead SNPs are defined by **--summary_SNP_file** and full SNP list by **--all_SNP_file**.
 Look up SNPs against a reference database file to ensure mappings and alleles are correct.
 Determine reference and alternate alleles.
 Optionally, remove SNPs that are known sequencing artifacts.
@@ -26,17 +26,17 @@ Part 4 : Optionally generate figures of the SNP filtering
 # Instructions
 
 **Before running** 
-The script will connect to the NIH website to extract linkage information. You will need to go to this link (https://ldlink.nci.nih.gov/?tab=apiaccess) and register for an API token. In the script options please enter you token before running, using -T, --API_token.
+The script will connect to the NIH LDlink website to extract linkage information. You will need to go to this link (https://ldlink.nci.nih.gov/?tab=apiaccess) and register for an API token and parse this, using **-T, --API_token**.
 
 **Quick start** 
-When running the script ensure you have at least 40Gb of RAM as the script reads into memory both genome and reference SNP files. 
-To execute in its most simple form
-> Rscript /path_to_script/design_library_v0.2.R \
--i / path_to/summary_SNPs.txt \
--a /path_to/all_SNPs.txt \
--d /path_to/SNPdb.vcf.gz \
--g /path_to/reference_genome.fa.gz \
--o /path_to/outdir \
+When running the script ensure you have at least 40Gb of RAM as the script reads both genome and reference SNP files into memory. 
+To execute, in its simplest form
+> Rscript /path_to_script/design_library_v0.2.R \\
+-i / path_to/summary_SNPs.txt \\
+-a /path_to/all_SNPs.txt \\
+-d /path_to/SNPdb.vcf.gz \\
+-g /path_to/reference_genome.fa.gz \\
+-o /path_to/outdir \\
 -T {API_token}
 
 **Libraries**
