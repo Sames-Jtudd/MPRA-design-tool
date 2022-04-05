@@ -8,6 +8,7 @@ The script is designed to work with the output from META (https://mathgen.stats.
 Functions performed by the script ;
 
 Part 1 : extract variants within a defined genetic interval around sentinel/lead SNPs from which  probe sequences will be created. Sentinel/lead SNPs are defined by **--summary_SNP_file** and full SNP list by **--all_SNP_file**.
+
 Look up SNPs against a reference database file to ensure mappings and alleles are correct.
 Determine reference and alternate alleles.
 Optionally, remove SNPs that are known sequencing artifacts.
