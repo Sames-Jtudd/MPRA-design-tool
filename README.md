@@ -14,12 +14,16 @@ Determine reference and alternate alleles.
 Optionally, remove SNPs that are known sequencing artifacts.
 
 Part 2 : split SNPs into linkage based loci by extracting R2 information from NIH LDlink https://ldlink.nci.nih.gov/?tab=apiaccess.
+
 Apply a P-value filter based on the lead SNP in each loci.
+
 Optionally add proxies that are not in the original SNP list (which may have been filtered eg due to info score).
 
 Part 3 : Extract the sequences for the REF and ALT alleles.
 Add adapters and then optionally alter or filter sequences that have homopolymers.
+
 Generate control sequences.
+
 Perform some final checks (remap sequences to verify consistency). 
 
 Part 4 : Optionally generate figures of the SNP filtering
