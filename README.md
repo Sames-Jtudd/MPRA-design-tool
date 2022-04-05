@@ -26,7 +26,7 @@ Generate control sequences.
 
 Perform some final checks (remap sequences to verify consistency). 
 
-Part 4 : Optionally generate figures of the SNP filtering
+**Part 4** : Optionally generate figures of the SNP filtering
 
 # Instructions
 
